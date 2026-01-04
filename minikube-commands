@@ -40,6 +40,58 @@ minikube node add
 minikube log -f
 
 
+*********************************************************************************************************************************************************************************************************************
+*********************************************************************************************************************************************************************************************************************
+                                                                                TROUBLE SHOOTING 
+*********************************************************************************************************************************************************************************************************************
+*********************************************************************************************************************************************************************************************************************
+
+1. List all Minikube clusters (profiles)
+minikube profile list
+
+2. See Minikube cluster configuration (CPU, memory, disk)
+Active profile
+minikube config view
+
+Specific profile
+minikube config view -p hub
+
+Node-level details
+kubectl get nodes -o wide
+kubectl describe node
+
+3. Memory & CPU usage (real-time)
+Enable metrics-server (if not already)
+minikube addons enable metrics-server
+
+Check usage
+kubectl top nodes
+kubectl top pods -A
+
+
+4. Storage usage
+Inside Minikube node (most accurate)
+minikube ssh
+df -h
+
+To exit:
+exit
+
+Kubernetes view
+kubectl get pv
+kubectl get pvc -A
+
+5. Addons & components
+minikube addons list
+
+
+6. Network configuration
+Minikube IP
+minikube ip
+
+Cluster service network
+kubectl cluster-info
+
 
 *************************************************argocd commands*******************************************
 
