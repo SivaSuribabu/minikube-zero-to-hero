@@ -92,7 +92,11 @@ minikube ip
 Cluster service network
 kubectl cluster-info
 
+7.Show node resources
+kubectl describe node
 
+8.Live CPU / memory
+kubectl top nodes
 *************************************************argocd commands*******************************************
 
 kubectl port-forward svc/argocd-server -n argocd --address 0.0.0.0 8080:443
