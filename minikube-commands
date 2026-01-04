@@ -1,20 +1,46 @@
+
 minikube start --driver=docker --memory=6gb --cpus=3 -p hub-cluster
-
 minikube start --driver=docker --memory=6gb --cpus=3 -p spoke-cluster-dev
-
 minikube start --driver=docker --memory=6gb --cpus=3 -p spoke-cluster-prod
 
-minikube profile list
+minikube start -p hub --driver=docker --network-plugin=cni --cni=calico --memory=6gb --cpus=3 
+minikube start -p spoke-dev --driver=docker --network-plugin=cni --cni=calico --memory=6gb --cpus=3 
+minikube start -p spoke-qa --driver=docker --network-plugin=cni --cli=calico --memory=6gb --cpus=3 
+
 
 minikube stop -p hub-cluster
 
+minikube pause -p hub-cluster
+
+minikube unpause -p hub-cluser
+
 minikube delete -p hub-cluster
+
+
+
+minikube profile list
 
 minikube service list -n argocd
 
 minikube service argocd-server -n argocd
 
-************************************************************************************************************
+minikube dashboard
+
+
+minikube addons enable ingress
+minikube addons enable metrics-server
+minikube ssh
+minikube tunnel
+minikube ip
+
+
+eval $(minikube docker-env)   (ex: docker build -t my-app .)
+minikube node add
+
+minikube log -f
+
+
+
 *************************************************argocd commands*******************************************
 
 kubectl port-forward svc/argocd-server -n argocd --address 0.0.0.0 8080:443
